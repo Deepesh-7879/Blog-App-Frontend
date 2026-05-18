@@ -109,7 +109,7 @@ function ArticleByID() {
   const addComment = async (commentObj) => {
     //add artcileId
     console.log(commentObj);
-    let res = await axios.put(`https://blog-app-backend-1-9pqo.onrender.com/${article._id}`, commentObj, { withCredentials: true });
+    let res = await axios.put(`https://blog-app-backend-1-9pqo.onrender.com/user-api/article/${article._id}`, commentObj, { withCredentials: true });
     if (res.status === 201) {
       toast.success(res.data.message);
       setArticle(res.data.payload);
