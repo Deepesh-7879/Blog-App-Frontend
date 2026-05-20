@@ -42,11 +42,17 @@ function EditArticle() {
 
   const updateArticle = async (data) => {
      console.log("ID is:", id);
-    try{
-      let res = await axios.put(`https://blog-app-backend-1-9pqo.onrender.com/author-api/articles/${id}`,data,{withCredentials:true});
+    try {
+      let res = await axios.put(
+        `https://blog-app-backend-1-9pqo.onrender.com/author-api/articles/${id}`,
+        data,
+        { withCredentials: true }
+      );
+
+      toast.success(res.data.message || "Article updated successfully");
       navigate("/author-dashboard");
     } catch (err) {
-      setErr(err.response?.data?.error);
+      setErr(err.response?.data?.error || "Failed to update article");
     }
   };
 

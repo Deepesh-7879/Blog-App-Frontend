@@ -122,6 +122,8 @@ function ArticleByID() {
 
   const defaultImage = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
   const authorImg = article.author?.profileImageUrl || defaultImage;
+  const articleAuthorId = article.author?._id || article.author;
+  const canModifyArticle = user?.role === "AUTHOR" && articleAuthorId === user?._id;
 
   return (
     <div className={articlePageWrapper}>
@@ -145,7 +147,7 @@ function ArticleByID() {
       <div className={articleContent}>{article.content}</div>
 
       {/* AUTHOR actions */}
-      {user?.role === "AUTHOR" && (
+      {canModifyArticle && (
         <div className={articleActions}>
           <button className={editBtn} onClick={() => editArticle(article)}>
             Edit
